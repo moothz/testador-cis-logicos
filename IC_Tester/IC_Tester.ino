@@ -283,8 +283,12 @@ void setup()
   Serial.begin(115200);
 
   delay(1000); // power-up safety delay
+  Serial.print("Inicializando LCD...");
   tft_init();  //TFT setup
+  Serial.print("Inicializando SD card...");
   SD_init(); //SD Card Setup
+
+  Serial.print("Sistema Inicializado");
 }
 //----------------------------------------------------------------------------------------------------------------------//
 // --------------------------------------------------Main Loop----------------------------------------------------------//

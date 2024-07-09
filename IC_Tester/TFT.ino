@@ -19,10 +19,10 @@ void modeScreen() //Main menu screen
 {
   tft.fillScreen(NUPEDEE_AZUL_CLARO);
   tft.setCursor(10, 10);
-  tft.setTextColor(NUPEDEE_AZUL_FORTE);  tft.setTextSize(4);
+  tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(4);
   tft.println(F(" NUPEDEE "));
   tft.setCursor(12, 12);
-  tft.setTextColor(GREY);  tft.setTextSize(4);
+  tft.setTextColor(NUPEDEE_AZUL_FORTE);  tft.setTextSize(4);
   tft.println(F(" NUPEDEE "));
 
   for (int i = 0; i < 5; i++) {
@@ -591,38 +591,46 @@ void quickSelectScreen(int quickScreenPage) //Main menu screen
   buttonsMenus[11].initButton(&tft, 30, 300, 40, 40, WHITE, GREEN, WHITE, "<", 3);// go back to main menu
   buttonsMenus[12].initButton(&tft, 210, 300, 40, 40, WHITE, GREEN, WHITE, ">", 3);// go back to main menu
 
-  int botao_largura = 80;
+  int botao_largura = 90;
   int botao_altura = 40;
   int botao_espH = 110;
-  int botao_espV = 55;
-  int botao_tFonte = 2;
+  int botao_espV = 65;
+  int botao_tFonte = 3;
 
   switch (quickScreenPage) {
     case 0:
-      buttonsMenus[1].initButton(&tft, 65, 30, botao_largura, botao_altura, RED, NUPEDEE_CINZINHA, BLACK, "7408", botao_tFonte);
-      buttonsMenus[2].initButton(&tft, 65 + botao_espH, 30, botao_largura, botao_altura, ORANGE, NUPEDEE_CINZINHA, BLACK, "7432", botao_tFonte);
-      buttonsMenus[3].initButton(&tft, 65, 30 + botao_espV, botao_largura, botao_altura, WHITE, NUPEDEE_CINZINHA, BLACK, "7486", botao_tFonte);
-      buttonsMenus[4].initButton(&tft, 65 + botao_espH, 30 + botao_espV, botao_largura, botao_altura, GREEN, NUPEDEE_CINZINHA, BLACK, "7404", botao_tFonte);
-      buttonsMenus[5].initButton(&tft, 65, 30 + botao_espV * 2, botao_largura, botao_altura, YELLOW, NUPEDEE_CINZINHA, BLACK, "7400", botao_tFonte);
-      buttonsMenus[6].initButton(&tft, 65 + botao_espH, 30 + botao_espV * 2, botao_largura, botao_altura, BLUE, NUPEDEE_CINZINHA, BLACK, "7402", botao_tFonte);
-      buttonsMenus[7].initButton(&tft, 65, 30 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "7411", botao_tFonte);
-      buttonsMenus[8].initButton(&tft, 65 + botao_espH, 30 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, NAVY, "7446", botao_tFonte);
-      buttonsMenus[9].initButton(&tft, 65, 30 + botao_espV * 4, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, NUPEDEE_VERDE_ESCURO, "7474", botao_tFonte);
-      buttonsMenus[10].initButton(&tft, 65 + botao_espH, 30 + botao_espV * 4, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, NUPEDEE_VERDE_ESCURO, "7476", botao_tFonte);
+      buttonsMenus[1].initButton(&tft, 65, 45, botao_largura, botao_altura, RED, NUPEDEE_CINZINHA, RED, "7408", botao_tFonte);
+      buttonsMenus[2].initButton(&tft, 65 + botao_espH, 45, botao_largura, botao_altura, ORANGE, NUPEDEE_CINZINHA, ORANGE, "7432", botao_tFonte);
+      buttonsMenus[3].initButton(&tft, 65, 45 + botao_espV, botao_largura, botao_altura, WHITE, NUPEDEE_CINZINHA, WHITE, "7486", botao_tFonte);
+      buttonsMenus[4].initButton(&tft, 65 + botao_espH, 45 + botao_espV, botao_largura, botao_altura, GREEN, NUPEDEE_CINZINHA, GREEN, "7404", botao_tFonte);
+      buttonsMenus[5].initButton(&tft, 65, 45 + botao_espV * 2, botao_largura, botao_altura, YELLOW, NUPEDEE_CINZINHA, YELLOW, "7400", botao_tFonte);
+      buttonsMenus[6].initButton(&tft, 65 + botao_espH, 45 + botao_espV * 2, botao_largura, botao_altura, BLUE, NUPEDEE_CINZINHA, BLUE, "7402", botao_tFonte);
+      buttonsMenus[7].initButton(&tft, 65, 45 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "7411", botao_tFonte);
+      buttonsMenus[8].initButton(&tft, 65 + botao_espH, 45 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "7446", botao_tFonte);
       break;
 
     case 1:
-      buttonsMenus[1].initButton(&tft, 65, 30, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4008", botao_tFonte);
-      buttonsMenus[2].initButton(&tft, 65 + botao_espH, 30, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4032", botao_tFonte);
-      buttonsMenus[3].initButton(&tft, 65, 30 + botao_espV, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4086", botao_tFonte);
-      buttonsMenus[4].initButton(&tft, 65 + botao_espH, 30 + botao_espV, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4004", botao_tFonte);
-      buttonsMenus[5].initButton(&tft, 65, 30 + botao_espV * 2, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4000", botao_tFonte);
-      buttonsMenus[6].initButton(&tft, 65 + botao_espH, 30 + botao_espV * 2, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4002", botao_tFonte);
-      buttonsMenus[7].initButton(&tft, 65, 30 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4011", botao_tFonte);
-      buttonsMenus[8].initButton(&tft, 65 + botao_espH, 30 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4046", botao_tFonte);
-      buttonsMenus[9].initButton(&tft, 65, 30 + botao_espV * 4, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4040", botao_tFonte);
-      buttonsMenus[10].initButton(&tft, 65 + botao_espH, 30 + botao_espV * 4, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4076", botao_tFonte);
+      buttonsMenus[1].initButton(&tft, 65, 45, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "7474", botao_tFonte);
+      buttonsMenus[2].initButton(&tft, 65 + botao_espH, 45, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "7476", botao_tFonte);
+      buttonsMenus[3].initButton(&tft, 65, 45 + botao_espV, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4013", botao_tFonte);
+      buttonsMenus[4].initButton(&tft, 65 + botao_espH, 45 + botao_espV, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4027", botao_tFonte);
+      buttonsMenus[5].initButton(&tft, 65, 45 + botao_espV * 2, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "7446", botao_tFonte);
+      buttonsMenus[6].initButton(&tft, 65 + botao_espH, 45 + botao_espV * 2, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4511", botao_tFonte);
+      buttonsMenus[7].initButton(&tft, 65, 45 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "74193", botao_tFonte);
+      buttonsMenus[8].initButton(&tft, 65 + botao_espH, 45 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4520", botao_tFonte);
       break;
+
+    case 2:
+      buttonsMenus[1].initButton(&tft, 65, 45, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4011", botao_tFonte);
+      buttonsMenus[2].initButton(&tft, 65 + botao_espH, 45, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4001", botao_tFonte);
+      buttonsMenus[3].initButton(&tft, 65, 45 + botao_espV, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4030", botao_tFonte);
+      buttonsMenus[4].initButton(&tft, 65 + botao_espH, 45 + botao_espV, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4070", botao_tFonte);
+      buttonsMenus[5].initButton(&tft, 65, 45 + botao_espV * 2, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4077", botao_tFonte);
+      buttonsMenus[6].initButton(&tft, 65 + botao_espH, 45 + botao_espV * 2, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4010", botao_tFonte);
+      buttonsMenus[7].initButton(&tft, 65, 45 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4009", botao_tFonte);
+      buttonsMenus[8].initButton(&tft, 65 + botao_espH, 45 + botao_espV * 3, botao_largura, botao_altura, BLACK, NUPEDEE_CINZINHA, BLACK, "4049", botao_tFonte);
+      break;
+
   }
 
   for (int i = 0; i < 13; i++) {

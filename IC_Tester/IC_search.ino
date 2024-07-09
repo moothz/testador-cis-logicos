@@ -14,22 +14,27 @@ void autoSearch(int pins)
   chip ans[10];//here the program stores all the chips that passed the test.
   pinNumberRouting = pins;
   //----------------------------------------------------Header graphics---------------------------------------------------//
-  tft.fillScreen(BLACK); //"clears" the screen
+  tft.fillScreen(NUPEDEE_AZUL_CLARO);
   tft.setCursor(10, 10);
-  tft.setTextColor(BLUE);  tft.setTextSize(4);
-  tft.println(F("IC TESTER"));
+  tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(4);
+  tft.println(F(" NUPEDEE "));
   tft.setCursor(12, 12);
-  tft.setTextColor(GREY);  tft.setTextSize(4);
-  tft.println(F("IC TESTER"));
-  tft.setCursor(22, 46);
+  tft.setTextColor(NUPEDEE_AZUL_FORTE);  tft.setTextSize(4);
+  tft.println(F(" NUPEDEE "));
+
+  for (int i = 0; i < 5; i++) {
+    tft.drawFastHLine(32, 45 + i, 170, NUPEDEE_AMARELO);
+  }
+  
+  tft.setCursor(17, 46);
   tft.setTextColor(GREY);  tft.setTextSize(3);
-  tft.println(F("Identifying"));
-  tft.setCursor(20, 45);
+  tft.println(F("Identificando"));
+  tft.setCursor(15, 45);
   tft.setTextColor(WHITE);  tft.setTextSize(3);
-  tft.println(F("Identifying"));
+  tft.println(F("Identificando"));
   tft.setTextColor(GREY);tft.setTextSize(2);
   tft.setCursor(10, 100); //
-  tft.print(F("Number of pins: ")); tft.println(pins); 
+  tft.print(F("Pinos: ")); tft.println(pins); 
 
   if (dataFile) //here the reading/comparing of SD data begins
   {    
@@ -113,16 +118,15 @@ void autoSearch(int pins)
     SD.begin(10, 11, 12, 13);
     tft.setCursor(5, 140);
     tft.setTextColor(RED);  tft.setTextSize(4);
-    tft.print(F("ERROR:"));
+    tft.println(F("ERRO:"));
     tft.setTextColor(MAGENTA);
     tft.println(F("SD CARD"));
-    tft.setCursor(5, 300);
-    tft.setTextColor(RED);  tft.setTextSize(2);
-    tft.println(F("Touch for MAIN MENU"));
-    while(switches.status == 0)
-    { 
-    getTouch();
-    }    
-    flow();   
+    tft.setCursor(18, 300);
+    tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(2);
+    tft.println(F("Toque para voltar"));
+    while (switches.status == 0) {
+      getTouch();
+    }
+    flow();
   }
 }

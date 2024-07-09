@@ -2,6 +2,10 @@
 // --------------------------------------------------Main Sequence------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------------//
 int quickScreenPage = 0;
+String quickMenu1[9] = {"", "7408", "7432", "7486", "7404", "7400", "7402", "7411", "7446"};
+String quickMenu2[9] = {"", "7474", "7476", "4013", "4027", "7446", "4511", "74193", "4520"};
+String quickMenu3[9] = {"", "4011", "4001", "4030", "4070", "4077", "4010", "4009", "4049"};
+
 void flow()
 {
   //------------------------------------------Touch monitoring and responce-----------------------------------------------//
@@ -623,7 +627,7 @@ void flow()
         Serial.println("Clicou <");
         quickScreenPage--;
         if (quickScreenPage < 0) {
-          quickScreenPage = 1;
+          quickScreenPage = 2;
         }
         quickSelectScreen(quickScreenPage);
       }
@@ -631,7 +635,7 @@ void flow()
       if (buttonsMenus[12].justPressed()) {
         Serial.println("Clicou >");
         quickScreenPage++;
-        if (quickScreenPage > 1) {
+        if (quickScreenPage > 2) {
           quickScreenPage = 0;
         }
 
@@ -640,58 +644,206 @@ void flow()
 
       // Botão dos CIs
       // Chamam repeatTest(numberRouting, numberofTests.toInt());//Loop test routine
-
-
-
       if (buttonsMenus[1].justPressed()) {
-        Serial.println("Clicou no 7408!!");
-        //repeatTest("7408", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[1]);
+            numberRouting = quickMenu1[1];
+            repeatTest(quickMenu1[1], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[1]);
+            numberRouting = quickMenu2[1];
+            repeatTest(quickMenu2[1], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[1]);
+            numberRouting = quickMenu3[1];
+            repeatTest(quickMenu3[1], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[2].justPressed()) {
-        Serial.println("Clicou no 7432!!");
-        //repeatTest("7432", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[2]);
+            numberRouting = quickMenu1[2];
+            repeatTest(quickMenu1[2], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[2]);
+            numberRouting = quickMenu2[2];
+            repeatTest(quickMenu2[2], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[2]);
+            numberRouting = quickMenu3[2];
+            repeatTest(quickMenu3[2], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[3].justPressed()) {
-        Serial.println("Clicou no 7486!!");
-        //repeatTest("7486", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[3]);
+            numberRouting = quickMenu1[3];
+            repeatTest(quickMenu1[3], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[3]);
+            numberRouting = quickMenu2[3];
+            repeatTest(quickMenu2[3], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[3]);
+            numberRouting = quickMenu3[3];
+            repeatTest(quickMenu3[3], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[4].justPressed()) {
-        Serial.println("Clicou no 7404!!");
-        //repeatTest("7404", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[4]);
+            numberRouting = quickMenu1[4];
+            repeatTest(quickMenu1[4], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[4]);
+            numberRouting = quickMenu2[4];
+            repeatTest(quickMenu2[4], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[4]);
+            numberRouting = quickMenu3[4];
+            repeatTest(quickMenu3[4], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[5].justPressed()) {
-        Serial.println("Clicou no 7400!!");
-        //repeatTest("7400", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[5]);
+            numberRouting = quickMenu1[5];
+            repeatTest(quickMenu1[5], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[5]);
+            numberRouting = quickMenu2[5];
+            repeatTest(quickMenu2[5], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[5]);
+            numberRouting = quickMenu3[5];
+            repeatTest(quickMenu3[5], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[6].justPressed()) {
-        Serial.println("Clicou no 7402!!");
-        //repeatTest("7402", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[6]);
+            numberRouting = quickMenu1[6];
+            repeatTest(quickMenu1[6], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[6]);
+            numberRouting = quickMenu2[6];
+            repeatTest(quickMenu2[6], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[6]);
+            numberRouting = quickMenu3[6];
+            repeatTest(quickMenu3[6], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[7].justPressed()) {
-        Serial.println("Clicou no 7411!!");
-        //repeatTest("7411", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[7]);
+            numberRouting = quickMenu1[7];
+            repeatTest(quickMenu1[7], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[7]);
+            numberRouting = quickMenu2[7];
+            repeatTest(quickMenu2[7], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[7]);
+            numberRouting = quickMenu3[7];
+            repeatTest(quickMenu3[7], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[8].justPressed()) {
-        Serial.println("Clicou no 7446!!");
-        //repeatTest("7446", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[8]);
+            numberRouting = quickMenu1[8];
+            repeatTest(quickMenu1[8], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[8]);
+            numberRouting = quickMenu2[8];
+            repeatTest(quickMenu2[8], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[8]);
+            numberRouting = quickMenu3[8];
+            repeatTest(quickMenu3[8], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[9].justPressed()) {
-        Serial.println("Clicou no 7474!!");
-        //repeatTest("7474", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[9]);
+            numberRouting = quickMenu1[9];
+            repeatTest(quickMenu1[9], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[9]);
+            numberRouting = quickMenu2[9];
+            repeatTest(quickMenu2[9], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[9]);
+            numberRouting = quickMenu3[9];
+            repeatTest(quickMenu3[9], 1);
+            break;
+        }
       }
 
       if (buttonsMenus[10].justPressed()) {
-        Serial.println("Clicou no 7476!!");
-        //repeatTest("7476", 3);
+        switch (quickScreenPage) {
+          case 0:
+            Serial.println(quickMenu1[10]);
+            numberRouting = quickMenu1[10];
+            repeatTest(quickMenu1[10], 1);
+            break;
+          case 1:
+            Serial.println(quickMenu2[10]);
+            numberRouting = quickMenu2[10];
+            repeatTest(quickMenu2[10], 1);
+            break;
+          case 2:
+            Serial.println(quickMenu3[10]);
+            numberRouting = quickMenu3[10];
+            repeatTest(quickMenu3[10], 1);
+            break;
+        }
       }
+
 
       //if(quickScreenPage == 1){
       break;

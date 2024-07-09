@@ -16,14 +16,14 @@
 #define TEXT_W 230
 #define TEXT_H 55
 #define TEXT_TSIZE 3
-#define TEXT_TCOLOR GREEN
+#define TEXT_TCOLOR NUPEDEE_AZUL_FORTE
 #define TEXT_LEN 7
 
 const char buttonlabels[10][5] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 const char deleted[1] = { " "};
 String getIC(byte keypadText)
 {
-  tft.fillScreen(BLACK);
+  tft.fillScreen(NUPEDEE_AZUL_CLARO);
  
   String number = "";
   unsigned long numberIC = 0;  
@@ -35,7 +35,7 @@ String getIC(byte keypadText)
   {
     for (uint8_t col = 0; col < 5; col++) 
     {
-      buttonsMenus[col + row * 5].initButton(&tft, BUTTON_X + col * (BUTTON_W + BUTTON_SPACING_X), BUTTON_Y + row * (BUTTON_H + BUTTON_SPACING_Y), BUTTON_W, BUTTON_H, WHITE, BLACK, WHITE, buttonlabels[col + row * 5], 2);
+      buttonsMenus[col + row * 5].initButton(&tft, BUTTON_X + col * (BUTTON_W + BUTTON_SPACING_X), BUTTON_Y + row * (BUTTON_H + BUTTON_SPACING_Y), BUTTON_W, BUTTON_H, WHITE, NUPEDEE_AZUL_FORTE, WHITE, buttonlabels[col + row * 5], 2);
       buttonsMenus[col + row * 5].drawButton();
     }
   }
@@ -43,60 +43,60 @@ String getIC(byte keypadText)
   buttonsMenus[10].drawButton();
   buttonsMenus[11].initButton(&tft, 190, BUTTON_Y + 2 * (BUTTON_H + BUTTON_SPACING_Y), 80, BUTTON_H, WHITE, BLACK, WHITE, "Clear", 2);
   buttonsMenus[11].drawButton();
-  buttonsMenus[12].initButton(&tft, 120, 290, 200, 40, WHITE, GREY, BLACK, "Main menu", 3);
+  buttonsMenus[12].initButton(&tft, 120, 300, 120, 40, WHITE, RED, WHITE, "Voltar", 3);// go back to main menu
   buttonsMenus[12].drawButton();
   buttonsMenus[13].initButton(&tft, 105, BUTTON_Y + 2 * (BUTTON_H + BUTTON_SPACING_Y), 60, BUTTON_H, WHITE, BLACK, RED, "DEL", 2);
   buttonsMenus[13].drawButton(); 
   // create 'text field'
   tft.drawRect(TEXT_X, TEXT_Y, TEXT_W, TEXT_H, WHITE);
   tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-  tft.setTextColor(TEXT_TCOLOR, BLACK);
+  tft.setTextColor(TEXT_TCOLOR, NUPEDEE_AZUL_CLARO);
   tft.setTextSize(TEXT_TSIZE);
     
   if(keypadText == 0)
   { 
-    tft.print(F("  IC number"));
+    tft.print(F("  Numero CI"));
     delay(500);
-    tft.setTextColor(BLACK);
+    tft.setTextColor(NUPEDEE_AZUL_CLARO);
     tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-    tft.print(F("  IC number"));
+    tft.print(F("  Numero CI"));
     if(switches.keypadIC == 1) {number = numberRouting;}
-    tft.setTextColor(TEXT_TCOLOR, BLACK);
+    tft.setTextColor(TEXT_TCOLOR, NUPEDEE_AZUL_CLARO);
     tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
     tft.print(number);
   }
   if(keypadText == 1)
   {
-    tft.print(F(" Test count"));
+    tft.print(F(" Repeticoes"));
     delay(500);
-    tft.setTextColor(BLACK);
+    tft.setTextColor(NUPEDEE_AZUL_CLARO);
     tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-    tft.print(F(" Test count"));
+    tft.print(F(" Repeticoes"));
   }
   if(keypadText == 2)
   {
-    tft.print(F(" Cycle count"));
+    tft.print(F("  Num Ciclos"));
     delay(500);
-    tft.setTextColor(BLACK);
+    tft.setTextColor(NUPEDEE_AZUL_CLARO);
     tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-    tft.print(F(" Cycle count"));
+    tft.print(F("  Num Ciclos"));
   }
   if(keypadText == 3)
   {
-    tft.print(F("Speed 1-10"));
+    tft.print(F("Velo. 1-10"));
     delay(500);
-    tft.setTextColor(BLACK);
+    tft.setTextColor(NUPEDEE_AZUL_CLARO);
     tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-    tft.print(F("Speed 1-10"));
+    tft.print(F("Velo. 1-10"));
 
   }
   if(keypadText == 4)
   {
-    tft.print(F("Time 1-2"));
+    tft.print(F("Dur. 1-2"));
     delay(500);
-    tft.setTextColor(BLACK);
+    tft.setTextColor(NUPEDEE_AZUL_CLARO);
     tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-    tft.print(F("Time 1-2"));
+    tft.print(F("Dur. 1-2"));
 
   }
   while (!status)
@@ -154,7 +154,7 @@ String getIC(byte keypadText)
         if (b == 11) 
         {
           tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-          tft.setTextColor(BLACK);
+          tft.setTextColor(NUPEDEE_AZUL_CLARO);
           tft.setTextSize(TEXT_TSIZE);
           tft.print(number);
           number = "";
@@ -162,7 +162,7 @@ String getIC(byte keypadText)
         }       
         // update the current text field
         tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-        tft.setTextColor(TEXT_TCOLOR, BLACK);
+        tft.setTextColor(TEXT_TCOLOR, NUPEDEE_AZUL_CLARO);
         tft.setTextSize(TEXT_TSIZE);
         tft.print(number);
         // we dont really check that the text field makes sense
@@ -171,7 +171,7 @@ String getIC(byte keypadText)
         if (b == 13) 
         {
           tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-          tft.setTextColor(BLACK);
+          tft.setTextColor(NUPEDEE_AZUL_CLARO);
           tft.setTextSize(TEXT_TSIZE);
           tft.print(number);
           number.remove(i-1);
@@ -179,7 +179,7 @@ String getIC(byte keypadText)
         }       
         // update the current text field
         tft.setCursor(TEXT_X + 2, TEXT_Y + 10);
-        tft.setTextColor(TEXT_TCOLOR, BLACK);
+        tft.setTextColor(TEXT_TCOLOR, NUPEDEE_AZUL_CLARO);
         tft.setTextSize(TEXT_TSIZE);
         tft.print(number);
         // we dont really check that the text field makes sense
