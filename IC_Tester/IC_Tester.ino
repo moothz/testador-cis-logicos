@@ -56,10 +56,10 @@
 //------------------- See the manual for more indepth troubleshooting-------------------------------//
 //------------------------------------Screen type 2-------------------------------------------------//
 /*
-#define YP A1  // must be an analog pin, use "An" notation!
-#define XM A2  // must be an analog pin, use "An" notation!
-#define YM 7   // can be a digital pin
-#define XP 6   // can be a digital pin
+  #define YP A1  // must be an analog pin, use "An" notation!
+  #define XM A2  // must be an analog pin, use "An" notation!
+  #define YM 7   // can be a digital pin
+  #define XP 6   // can be a digital pin
 */
 //--------------------------------------------------------------------------------------------------//
 #define TS_MINX 150  //150, if the touchscreen seems off you might have to tweak these values
@@ -88,23 +88,29 @@
 #define PURPLE 0x780F
 #define NAVY 0x000F
 
+// Converter cores: http://rinkydinkelectronics.com/calc_rgb565.php
+#define NUPEDEE_AZUL_FORTE 0x222F
+#define NUPEDEE_AZUL_CLARO 0xAE5D
+#define NUPEDEE_AMARELO 0xEECB
+#define NUPEDEE_CINZINHA 0xEF5D
+#define NUPEDEE_VERDE_ESCURO 0x0201
 //TFT initialization
 Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 
 //Buttons
-Adafruit_GFX_Button buttonsPinout[24]; 
+Adafruit_GFX_Button buttonsPinout[24];
 Adafruit_GFX_Button buttonsClearPinout[1];
 Adafruit_GFX_Button buttonsMenus[13];
 
-//Pin Definitions             1   2   3   4   5   6   7   8   9   10  11  12  13  14  
- constexpr int PIN14[14]  = { 45, 43, 41, 39, 37, 35, 33, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega 
+//Pin Definitions             1   2   3   4   5   6   7   8   9   10  11  12  13  14
+constexpr int PIN14[14]  = { 45, 43, 41, 39, 37, 35, 33, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega
 //Pin Definitions             1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16
- constexpr int PIN16[16]  = { 45, 43, 41, 39, 37, 35, 33, 31, 30, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega 
+constexpr int PIN16[16]  = { 45, 43, 41, 39, 37, 35, 33, 31, 30, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega
 //Pin Definitions             1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20
- constexpr int PIN20[20]  = { 45, 43, 41, 39, 37, 35, 33, 31, 29, 27, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega 
+constexpr int PIN20[20]  = { 45, 43, 41, 39, 37, 35, 33, 31, 29, 27, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega
 //Pin Definitions             1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  22  23  24
- constexpr int PIN24[24]  = { 45, 43, 41, 39, 37, 35, 33, 31, 29, 27, 25, 23, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega 
+constexpr int PIN24[24]  = { 45, 43, 41, 39, 37, 35, 33, 31, 29, 27, 25, 23, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44 };//digital pins on the Arduino Mega
 
 #define chipSelect 10
 
@@ -118,99 +124,99 @@ File myFile;
 #define fname6 "Position.txt"//position of an IC
 //Function Headers
 void autoSearchResult(uint8_t mode = 0);
-boolean testIC(String buffer, byte pins);   
+boolean testIC(String buffer, byte pins);
 
 //Structure definition for alphabetized outputs, used in truthtables and diagrams
-typedef struct 
+typedef struct
 {
   String sortReference[24];
   int8_t sortedOutputs[24];//this is the only variable that can be a negative number
-  String refBuffer[24];  
+  String refBuffer[24];
 } truthTablet;
 truthTablet tablet;
 
-//Structure definiton for Chip under test 
-typedef struct 
+//Structure definiton for Chip under test
+typedef struct
 {
-  String num;               
+  String num;
   String name;
   int pins;
-  String pinFunction;        
-  String pinReference;         
+  String pinFunction;
+  String pinReference;
 } chip;
 
 //Structure for 1 bit switches
-struct boolSwitches 
+struct boolSwitches
 {
-  bool clockmenuToggle          : 1;// if the IC has a clock pin    
-  bool clockToggle              : 1;// if the IC has a clock pin  
-  bool clockbuttonStatus        : 1;// if the IC has a clock pin  
-  bool lastclockbuttonStatus    : 1;// if the IC has a clock pin  
+  bool clockmenuToggle          : 1;// if the IC has a clock pin
+  bool clockToggle              : 1;// if the IC has a clock pin
+  bool clockbuttonStatus        : 1;// if the IC has a clock pin
+  bool lastclockbuttonStatus    : 1;// if the IC has a clock pin
   bool muxdemuxMenuToggle       : 1;//if the IC is a multiplexer/demultiplexer
   bool muxdemuxToggle           : 1;//if the IC is a multiplexer/demultiplexer
   bool muxdemuxToggleStatus     : 1;//if the IC is a multiplexer/demultiplexer
   bool lastmuxdemuxToggleStatus : 1;//if the IC is a multiplexer/demultiplexer
   bool muxdemuxFlag = 0;        : 1;//if the IC is a multiplexer/demultiplexer
-  bool fastMode = 0;            : 1;//this is used to bypass time consuming graphical display updates  
-  bool fastStatus;              : 1;//this is used to bypass time consuming graphical display updates  
-  bool lastfastStatus;          : 1;//this is used to bypass time consuming graphical display updates  
+  bool fastMode = 0;            : 1;//this is used to bypass time consuming graphical display updates
+  bool fastStatus;              : 1;//this is used to bypass time consuming graphical display updates
+  bool lastfastStatus;          : 1;//this is used to bypass time consuming graphical display updates
   bool config1 = 0;             : 1;//config 1 toggle
-  bool config1Status            : 1;//config 1 toggle 
+  bool config1Status            : 1;//config 1 toggle
   bool lastconfig1Status        : 1;//config 1 toggle
   bool config2 = 0;             : 1;//config 2 toggle
-  bool config2Status            : 1;//config 2 toggle 
+  bool config2Status            : 1;//config 2 toggle
   bool lastconfig2Status        : 1;//config 2 toggle
   bool config3 = 0;             : 1;//config 3 toggle
-  bool config3Status            : 1;//config 3 toggle 
-  bool lastconfig3Status        : 1;//config 3 toggle  
+  bool config3Status            : 1;//config 3 toggle
+  bool lastconfig3Status        : 1;//config 3 toggle
   bool config4 = 0;             : 1;//config 4 toggle
-  bool config4Status            : 1;//config 4 toggle 
+  bool config4Status            : 1;//config 4 toggle
   bool lastconfig4Status        : 1;//config 4 toggle
   bool config5 = 0;             : 1;//config 5 toggle
-  bool config5Status            : 1;//config 5 toggle 
+  bool config5Status            : 1;//config 5 toggle
   bool lastconfig5Status        : 1;//config 5 toggle
-  bool keypadIC = 0;            : 1;//Keypad last IC toggle       
+  bool keypadIC = 0;            : 1;//Keypad last IC toggle
   bool autosearchEnd = 0;       : 1;
   bool switchCaseFininshed = 0; : 1;
   bool manualSwitch             : 1;//
-  bool circumvent = 0;          : 1;//used to bypass the rest of the routine(usually the keypad function) and go to main menu 
-  bool diagram = 0;             : 1;//timing diagram / truth table switch       
-  bool lastDiagram = 0;         : 1;//timing diagram / truth table switch  
-  bool statusDiagram = 0;       : 1;//timing diagram / truth table switch  
+  bool circumvent = 0;          : 1;//used to bypass the rest of the routine(usually the keypad function) and go to main menu
+  bool diagram = 0;             : 1;//timing diagram / truth table switch
+  bool lastDiagram = 0;         : 1;//timing diagram / truth table switch
+  bool statusDiagram = 0;       : 1;//timing diagram / truth table switch
   bool fullCycle = 0;           : 1;//trigger type switch
   bool statusfullCycle = 0;     : 1;//trigger type switch
   bool lastfullCycle = 0;       : 1;//trigger type switch
   bool saveStateSD = 0;         : 1;//this differentiate between lastTest or regular test
   bool status = 0;              : 1;
   bool endlessLoopSwitch = 0;   : 1;//test an IC until the user stops the test
-  bool pushingButtons = 0;      : 1;//automatic input button push switch   
+  bool pushingButtons = 0;      : 1;//automatic input button push switch
   bool clearCSV = 0;            : 1;//clear CSV file after every run switch
-  bool holdButtons = 0;         : 1;//hold inputs high switch  
-  bool circumventTFT = 0;       : 1;//flips the output low after certain amount of inputs have been held high 
+  bool holdButtons = 0;         : 1;//hold inputs high switch
+  bool circumventTFT = 0;       : 1;//flips the output low after certain amount of inputs have been held high
   bool macgyver = 0;            : 1;//switch for the screensaver
   bool pushed = 0;              : 1;//touchscreen input
-}; 
+};
 boolSwitches switches;
 
 //Variables
-bool storeErrorPlace[24]; //keeps track of which pin failed a test    
-bool tableRow[24];             
-bool inputs[24];                          
-bool lastDiagramState[24];    
-bool clock[24];              
-bool inOut[24];//stores the pin information for mux/demux, set as Inputs               
-bool outIn[24];//stores the pin information for mux/demux, set as Outputs   
-bool inputPushing[24];//     
-bool lastInputPushing[24];    
-bool buttonStatus[24]; 
-bool buttonNonToggleStatus[24]; 
+bool storeErrorPlace[24]; //keeps track of which pin failed a test
+bool tableRow[24];
+bool inputs[24];
+bool lastDiagramState[24];
+bool clock[24];
+bool inOut[24];//stores the pin information for mux/demux, set as Inputs
+bool outIn[24];//stores the pin information for mux/demux, set as Outputs
+bool inputPushing[24];//
+bool lastInputPushing[24];
+bool buttonStatus[24];
+bool buttonNonToggleStatus[24];
 bool lastbuttonStatus[24];  //should trim these a bit
-bool lastoutputState[24];//to reduce redundant drawings of graphics on screen 
+bool lastoutputState[24];//to reduce redundant drawings of graphics on screen
 
 byte pinSpacer;//space between pins in pinout mode
 byte screenStatus = 0; //switches between states/routines for the program
 byte lastStatus = 0; //switches between states/routines for the program
-byte automaticInputButtonPusher = 0; 
+byte automaticInputButtonPusher = 0;
 byte speed = 1;//speed of clock cycle in pinout mode and the speed of clock trigger in truthtable/diagram mode
 byte countingOutputs = 0;//used ro count numbers of outputs for diagram/truthtable mode
 byte numberofIcs; // keeps track of number of IC that matched the test of IC under IC search
@@ -220,7 +226,7 @@ byte outputCounter = 0, lastOutputCounter = 0;
 byte rowsOfValuesCounter = 0;
 byte anotherSpacer = 0;
 byte spaceCounter = 0;
-byte OutputIndex = 1;  
+byte OutputIndex = 1;
 byte screenStatusSD = 0; //keeps track of the last screenstatus the program was in when it got saved to the SD card
 byte linecount = 1;//keeps count on the number of test lines for a IC under test in IC test mode
 byte buttonSize = 22;//size of buttons in pinout mode
@@ -228,7 +234,7 @@ byte outputSize = 10; //size of outputs in pinout mode
 byte boxSize = 20;  //size of unchangable pins in pinout mode eg. VCC,GND and NC pins
 byte horizontalNudge = 0;
 byte previousScreenstatus = 0;
-byte outputs[24]; //state of the output pins            
+byte outputs[24]; //state of the output pins
 byte clearArray[1]; //used to clear arrays
 char converter[10]; //used to convert IC numbers into char for button displaying
 char previousTestPinFunction[24];
@@ -247,7 +253,7 @@ String numberRouting; //stores the name/number of the chip in question e.g 4022 
 String globalReference[24], globalpinFunction[24], storeTestLines[24], storeErrorLines[24];
 String numberofTests;//stores the number of tests!!!!!!!!!!!why is this a string
 
-byte *pinNumberRoutingPointer = &pinNumberRouting; 
+byte *pinNumberRoutingPointer = &pinNumberRouting;
 int8_t *sortedOutputsPointer[24];
 int  *pin, pinCount = 0;
 String *globalReferencePointer[24];
@@ -258,35 +264,52 @@ String *chipDescriptionPointer;
 void SD_init()
 {
   pinMode(SS, OUTPUT);
-  if (!SD.begin(10, 11, 12, 13)) {Serial.println(F("Card failed, or not present")); return;}
+  if (!SD.begin(10, 11, 12, 13)) {
+    Serial.println(F("Card failed, or not present"));
+    return;
+  }
   Serial.println("SD card initialized.");
 }
 
-void setup() 
-{  
- for(uint8_t w=0; w<24; w++)
-  {  
-    sortedOutputsPointer[w] = &tablet.sortedOutputs[w];  
+void setup()
+{
+  for (uint8_t w = 0; w < 24; w++)
+  {
+    sortedOutputsPointer[w] = &tablet.sortedOutputs[w];
     globalReferencePointer[w] = &globalReference[w];
     globalpinFunctionPointer[w] = &globalpinFunction[w];
     sortReferencePointer[w] = &tablet.sortReference[w];
-  } 
+  }
   Serial.begin(115200);
-  
-  delay(1000); // power-up safety delay 
-  tft_init();  //TFT setup 
+
+  delay(1000); // power-up safety delay
+  tft_init();  //TFT setup
   SD_init(); //SD Card Setup
 }
 //----------------------------------------------------------------------------------------------------------------------//
 // --------------------------------------------------Main Loop----------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------------//
-void loop() 
-{    
-  while(lapsCounter < speed/2) {flow();}
-  if(switches.clockmenuToggle == 0 && cycle > 0){automateRoutine(1);} //cycles through inputs ON
-  if(switches.clockToggle == 1){clockRoutine(1);} //ClockPulse High, Clock pulse Routine has to be outside the main loop otherwise I have to slow down the loop for it to be sensible  
-  while(lapsCounter < speed) {flow();}
+void loop()
+{
+  while (lapsCounter < speed / 2) {
+    flow();
+  }
+  if (switches.clockmenuToggle == 0 && cycle > 0) {
+    automateRoutine(1); //cycles through inputs ON
+  }
+  if (switches.clockToggle == 1) {
+    clockRoutine(1); //ClockPulse High, Clock pulse Routine has to be outside the main loop otherwise I have to slow down the loop for it to be sensible
+  }
+  while (lapsCounter < speed) {
+    flow();
+  }
   lapsCounter = 0; //reset the counter that keeps track of how many times the main loop has passed
-  if(switches.clockmenuToggle == 0 && cycle > 0){automateRoutine(0); automaticInputButtonPusher++;}  //cycles through inputs OFF 
-  if(switches.clockToggle == 1){clockRoutine(0); automaticInputButtonPusher++;} //ClockPulse LOW 
+  if (switches.clockmenuToggle == 0 && cycle > 0) {
+    automateRoutine(0);  //cycles through inputs OFF
+    automaticInputButtonPusher++;
+  }
+  if (switches.clockToggle == 1) {
+    clockRoutine(0);  //ClockPulse LOW
+    automaticInputButtonPusher++;
+  }
 }
