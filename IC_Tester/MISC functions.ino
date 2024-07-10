@@ -184,6 +184,8 @@ void getTouch()
   pinMode(XM, OUTPUT);
   pinMode(YP, OUTPUT);
 
+  //Serial.print("[getTouch] Pressure: ");
+  //Serial.println(q.z);
   if (q.z > MINPRESSURE && q.z < MAXPRESSURE) 
   {
       switches.status = 1;    

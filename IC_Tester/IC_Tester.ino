@@ -67,7 +67,7 @@
 #define TS_MAXX 920  //920
 #define TS_MAXY 940  //940
 
-#define MINPRESSURE 10
+#define MINPRESSURE 100
 #define MAXPRESSURE 1000
 
 // Assign human-readable names to some common 16-bit color values:

@@ -359,9 +359,9 @@ void Test_init(int pins)
     tft.setCursor(18, 300);
     tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(2);
     tft.println(F("Toque para voltar"));
-    while (switches.status == 0) {
+    do {
       getTouch();
-    }
+    } while (switches.status == 0);
     flow();
   }
 }
