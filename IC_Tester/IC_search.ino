@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------------------------------------------------//
 void autoSearch(int pins)
 {
+  switches.autosearchFail = 0;
   File dataFile = SD.open(fname); //open the test database
   int t = 120; //position of ICs that matched 
   String nameAuto[10];//stores the matched ICs here
@@ -26,14 +27,19 @@ void autoSearch(int pins)
     tft.drawFastHLine(32, 45 + i, 170, NUPEDEE_AMARELO);
   }
   
-  tft.setCursor(17, 46);
+  tft.setCursor(2, 55);
   tft.setTextColor(GREY);  tft.setTextSize(3);
   tft.println(F("Identificando"));
-  tft.setCursor(15, 45);
+  tft.setCursor(0, 54);
   tft.setTextColor(WHITE);  tft.setTextSize(3);
   tft.println(F("Identificando"));
-  tft.setTextColor(GREY);tft.setTextSize(2);
-  tft.setCursor(10, 100); //
+
+
+  tft.setCursor(68, 97); 
+  tft.setTextColor(NUPEDEE_AZUL_FORTE);  tft.setTextSize(2);
+  tft.print(F("Pinos: ")); tft.println(pins); 
+  tft.setCursor(66, 95);
+  tft.setTextColor(WHITE);  tft.setTextSize(2);
   tft.print(F("Pinos: ")); tft.println(pins); 
 
   if (dataFile) //here the reading/comparing of SD data begins
@@ -127,6 +133,7 @@ void autoSearch(int pins)
     do {
       getTouch();
     } while (switches.status == 0);
+    switches.autosearchFail = 1;
     flow();
   }
 }

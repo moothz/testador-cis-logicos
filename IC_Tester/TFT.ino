@@ -17,6 +17,7 @@ void tft_init()
 //----------------------------------------------------------------------------------------------------------------------//
 void modeScreen() //Main menu screen
 {
+  Serial.println(F("[modeScreen] Printing main menu"));
   tft.fillScreen(NUPEDEE_AZUL_CLARO);
   tft.setCursor(10, 10);
   tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(4);
@@ -40,20 +41,6 @@ void modeScreen() //Main menu screen
   tft.setTextColor(WHITE);  tft.setTextSize(3);
   tft.println(F("Selecione:"));
 
-
-  //  buttonsMenus[4].initButton(&tft, 120, 100, 200, 30, GREY, BLACK, BLUE, "LastTest", 2); //last test menu button
-  //  buttonsMenus[4].drawButton();
-  //  if (switches.fastMode == 0)
-  //  {
-  //    buttonsMenus[1].initButton(&tft, 120, 140, 200, 30, WHITE, GREY, BLACK, "Fast OFF", 2); //faster test/search mode OFF
-  //    buttonsMenus[1].drawButton();
-  //  }
-  //  if (switches.fastMode == 1)
-  //  {
-  //    buttonsMenus[1].initButton(&tft, 120, 140, 200, 30, WHITE, GREY, BLACK, "Fast ON", 2); //faster test/search mode ON
-  //    buttonsMenus[1].drawButton(true);
-  //  }
-
   buttonsMenus[1].initButton(&tft, 120, 140, 200, 30, WHITE, WHITE, NUPEDEE_AZUL_FORTE, "Comuns", 2); //faster test/search mode ON
   buttonsMenus[1].drawButton(true);
   buttonsMenus[3].initButton(&tft, 120, 180, 200, 30, WHITE, WHITE, BLACK, "Digitar", 2); //search mode
@@ -70,7 +57,7 @@ void modeScreen() //Main menu screen
 //----------------------------------------------------------------------------------------------------------------------//
 void configScreen() //Main menu screen
 {
-  tft.fillScreen(BLACK);
+  tft.fillScreen(NUPEDEE_AZUL_CLARO);
   tft.setCursor(10, 10);
   tft.setTextColor(BLUE);  tft.setTextSize(4);
   tft.println(F("IC TESTER"));
@@ -390,25 +377,32 @@ void truthtableButtons()
 //----------------------------------------------------------------------------------------------------------------------//
 void autoScreen() //Select number of pins for auto search
 {
-  tft.fillScreen(BLACK);
+  tft.fillScreen(NUPEDEE_AZUL_CLARO);
   tft.setCursor(10, 10);
-  tft.setTextColor(BLUE);  tft.setTextSize(4);
-  tft.println(F("IC TESTER"));
+  tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(4);
+  tft.println(F(" NUPEDEE "));
   tft.setCursor(12, 12);
-  tft.setTextColor(GREY);  tft.setTextSize(4);
-  tft.println(F("IC TESTER"));
-  tft.setCursor(20, 50);
-  tft.setTextColor(WHITE);  tft.setTextSize(3);
-  tft.println(F("Identify IC"));
-  tft.setCursor(22, 48);
+  tft.setTextColor(NUPEDEE_AZUL_FORTE);  tft.setTextSize(4);
+  tft.println(F(" NUPEDEE "));
+
+  for (int i = 0; i < 5; i++) {
+    tft.drawFastHLine(32, 45 + i, 170, NUPEDEE_AMARELO);
+  }
+
+  tft.setCursor(21, 55);
   tft.setTextColor(GREY);  tft.setTextSize(3);
-  tft.println(F("Identify IC"));
-  tft.setCursor(42, 82);
-  tft.setTextColor(BLUE);  tft.setTextSize(2);
-  tft.println(F("Number of Pins"));
-  tft.setCursor(40, 80);
+  tft.println(F("Identificar"));
+  tft.setCursor(19, 54);
+  tft.setTextColor(WHITE);  tft.setTextSize(3);
+  tft.println(F("Identificar"));
+
+
+  tft.setCursor(68, 97);
+  tft.setTextColor(NUPEDEE_AZUL_FORTE);  tft.setTextSize(2);
+  tft.println(F("Qtd Pinos"));
+  tft.setCursor(66, 95);
   tft.setTextColor(WHITE);  tft.setTextSize(2);
-  tft.println(F("Number of Pins"));
+  tft.println(F("Qtd Pinos"));
   buttonsMenus[3].initButton(&tft, 60, 150, 100, 40, WHITE, GREY, BLACK, "14", 3);
   buttonsMenus[3].drawButton();
   buttonsMenus[4].initButton(&tft, 180, 150, 100, 40, WHITE, BLUE, BLACK, "16", 3);
@@ -417,7 +411,7 @@ void autoScreen() //Select number of pins for auto search
   buttonsMenus[6].drawButton();
   buttonsMenus[7].initButton(&tft, 180, 200, 100, 40, WHITE, WHITE, BLACK, "24", 3);
   buttonsMenus[7].drawButton();
-  buttonsMenus[8].initButton(&tft, 120, 300, 200, 40, WHITE, GREY, BLACK, "Main menu", 3);
+  buttonsMenus[8].initButton(&tft, 120, 300, 120, 40, WHITE, RED, WHITE, "Voltar", 3);// go back to main menu
   buttonsMenus[8].drawButton();
 }
 //----------------------------------------------------------------------------------------------------------------------//
@@ -425,27 +419,37 @@ void autoScreen() //Select number of pins for auto search
 //----------------------------------------------------------------------------------------------------------------------//
 void autoSearchResult(uint8_t mode)
 {
-  tft.fillScreen(BLACK);
+  if (switches.autosearchFail == 1){
+    Serial.println(F("autoSearchResult SKIPPED (autoSearchFail)"));
+    return;
+  }
+  tft.fillScreen(NUPEDEE_AZUL_CLARO);
   tft.setCursor(10, 10);
-  tft.setTextColor(BLUE);  tft.setTextSize(4);
-  tft.println(F("IC TESTER"));
+  tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(4);
+  tft.println(F(" NUPEDEE "));
   tft.setCursor(12, 12);
-  tft.setTextColor(GREY);  tft.setTextSize(4);
-  tft.println(F("IC TESTER"));
-  tft.setCursor(22, 43);
-  tft.setTextColor(GREY);  tft.setTextSize(3);
-  tft.println(F("Identifying"));
-  tft.setCursor(20, 45);
-  tft.setTextColor(WHITE);  tft.setTextSize(3);
-  tft.println(F("Identifying"));
-  tft.setTextColor(GREY);
-  tft.setCursor(39, 72);
-  tft.println(F("Completed"));
-  tft.setTextColor(WHITE);
-  tft.setCursor(40, 70);
-  tft.println(F("Completed"));
-  tft.setTextColor(WHITE); tft.setTextSize(1);
+  tft.setTextColor(NUPEDEE_AZUL_FORTE);  tft.setTextSize(4);
+  tft.println(F(" NUPEDEE "));
 
+  for (int i = 0; i < 5; i++) {
+    tft.drawFastHLine(32, 45 + i, 170, NUPEDEE_AMARELO);
+  }
+
+  tft.setCursor(2, 55);
+  tft.setTextColor(GREY);  tft.setTextSize(3);
+  tft.println(F("Identificando"));
+  tft.setCursor(0, 54);
+  tft.setTextColor(WHITE);  tft.setTextSize(3);
+  tft.println(F("Identificando"));
+
+  tft.setCursor(2, 79);
+  tft.setTextColor(GREY);  tft.setTextSize(3);
+  tft.println(F("     Fim     "));
+  tft.setCursor(0, 78);
+  tft.setTextColor(WHITE);  tft.setTextSize(3);
+  tft.println(F("     Fim     "));
+
+  
   if (chipDescription.length() < 38) {
     tft.setCursor(5, 110);
     tft.println(chipDescription);
@@ -496,8 +500,9 @@ void autoSearchResult(uint8_t mode)
       }
     }
   }
-  buttonsMenus[0].initButton(&tft, 120, 300, 200, 30, WHITE, GREY, BLACK, "MainMenu", 3);
-  buttonsMenus[0].drawButton(); //back to main menu from autosearch result
+  buttonsMenus[0].initButton(&tft, 120, 300, 120, 40, WHITE, RED, WHITE, "Voltar", 3);// go back to main menu
+  buttonsMenus[0].drawButton();
+
   for (uint8_t i = 0; i < pinNumberRouting; i++)
   {
     pinMode(pin[i], INPUT_PULLUP);
@@ -509,6 +514,7 @@ void autoSearchResult(uint8_t mode)
 //----------------------------------------------------------------------------------------------------------------------//
 void looptestResult(const String& name, word good, word bad, byte linecount, word fail, word passed)
 {
+  Serial.println(F("[looptestResult]"));
   tft.fillScreen(BLACK);
   tft.setCursor(10, 10);
   tft.setTextColor(BLUE);  tft.setTextSize(4);

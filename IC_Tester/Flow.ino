@@ -6,11 +6,15 @@ String quickMenu1[9] = {"", "7408", "7432", "7486", "7404", "7400", "7402", "741
 String quickMenu2[9] = {"", "7474", "7476", "4013", "4027", "7446", "4511", "74193", "4520"};
 String quickMenu3[9] = {"", "4011", "4001", "4030", "4070", "4077", "4010", "4009", "4049"};
 
+int lastDebugStatus = -1;
 void flow()
 {
 
-  //Serial.print(F("[flow] ScreenStatus: "));
-  //Serial.println(screenStatus);
+  if (screenStatus != lastDebugStatus) {
+    Serial.print(F("[flow] ScreenStatus: "));
+    Serial.println(screenStatus);
+    lastDebugStatus = screenStatus;
+  }
   //------------------------------------------Touch monitoring and responce-----------------------------------------------//
   TSPoint p = ts.getPoint();
   pinMode(XM, OUTPUT);
@@ -87,6 +91,7 @@ void flow()
           screenStatus = 69;
         }
       }
+
       if (buttonsMenus[0].justPressed()) {
         screenStatus = 2; //IC search screen
       }
@@ -192,8 +197,11 @@ void flow()
       switches.lastmuxdemuxToggleStatus = switches.muxdemuxToggleStatus;
       break;
     case 21: //aftermath of search for an IC
-      if (switches.autosearchEnd == 1)
-      {
+      Serial.println("autosearch aftermath");
+      if (switches.autosearchFail == 1) {
+        Serial.println("autosearch failed");
+        screenStatus = 0; //Main menu
+      } else if (switches.autosearchEnd == 1) {
         if (buttonsMenus[0].justPressed()) {
           screenStatus = 0; //Main menu
         }
@@ -652,19 +660,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[1]);
             numberRouting = quickMenu1[1];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[1], 1);
             break;
           case 1:
             Serial.println(quickMenu2[1]);
             numberRouting = quickMenu2[1];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[1], 1);
             break;
           case 2:
             Serial.println(quickMenu3[1]);
             numberRouting = quickMenu3[1];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[1], 1);
             break;
         }
@@ -675,19 +683,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[2]);
             numberRouting = quickMenu1[2];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[2], 1);
             break;
           case 1:
             Serial.println(quickMenu2[2]);
             numberRouting = quickMenu2[2];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[2], 1);
             break;
           case 2:
             Serial.println(quickMenu3[2]);
             numberRouting = quickMenu3[2];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[2], 1);
             break;
         }
@@ -698,19 +706,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[3]);
             numberRouting = quickMenu1[3];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[3], 1);
             break;
           case 1:
             Serial.println(quickMenu2[3]);
             numberRouting = quickMenu2[3];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[3], 1);
             break;
           case 2:
             Serial.println(quickMenu3[3]);
             numberRouting = quickMenu3[3];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[3], 1);
             break;
         }
@@ -721,19 +729,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[4]);
             numberRouting = quickMenu1[4];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[4], 1);
             break;
           case 1:
             Serial.println(quickMenu2[4]);
             numberRouting = quickMenu2[4];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[4], 1);
             break;
           case 2:
             Serial.println(quickMenu3[4]);
             numberRouting = quickMenu3[4];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[4], 1);
             break;
         }
@@ -744,19 +752,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[5]);
             numberRouting = quickMenu1[5];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[5], 1);
             break;
           case 1:
             Serial.println(quickMenu2[5]);
             numberRouting = quickMenu2[5];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[5], 1);
             break;
           case 2:
             Serial.println(quickMenu3[5]);
             numberRouting = quickMenu3[5];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[5], 1);
             break;
         }
@@ -767,19 +775,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[6]);
             numberRouting = quickMenu1[6];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[6], 1);
             break;
           case 1:
             Serial.println(quickMenu2[6]);
             numberRouting = quickMenu2[6];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[6], 1);
             break;
           case 2:
             Serial.println(quickMenu3[6]);
             numberRouting = quickMenu3[6];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[6], 1);
             break;
         }
@@ -790,19 +798,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[7]);
             numberRouting = quickMenu1[7];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[7], 1);
             break;
           case 1:
             Serial.println(quickMenu2[7]);
             numberRouting = quickMenu2[7];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[7], 1);
             break;
           case 2:
             Serial.println(quickMenu3[7]);
             numberRouting = quickMenu3[7];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[7], 1);
             break;
         }
@@ -813,19 +821,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[8]);
             numberRouting = quickMenu1[8];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[8], 1);
             break;
           case 1:
             Serial.println(quickMenu2[8]);
             numberRouting = quickMenu2[8];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[8], 1);
             break;
           case 2:
             Serial.println(quickMenu3[8]);
             numberRouting = quickMenu3[8];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[8], 1);
             break;
         }
@@ -836,19 +844,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[9]);
             numberRouting = quickMenu1[9];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[9], 1);
             break;
           case 1:
             Serial.println(quickMenu2[9]);
             numberRouting = quickMenu2[9];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[9], 1);
             break;
           case 2:
             Serial.println(quickMenu3[9]);
             numberRouting = quickMenu3[9];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[9], 1);
             break;
         }
@@ -859,19 +867,19 @@ void flow()
           case 0:
             Serial.println(quickMenu1[10]);
             numberRouting = quickMenu1[10];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu1[10], 1);
             break;
           case 1:
             Serial.println(quickMenu2[10]);
             numberRouting = quickMenu2[10];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu2[10], 1);
             break;
           case 2:
             Serial.println(quickMenu3[10]);
             numberRouting = quickMenu3[10];
-            screenStatus = 32;
+            //screenStatus = 32;
             repeatTest(quickMenu3[10], 1);
             break;
         }
@@ -915,9 +923,25 @@ void flow()
         break;
       case 5:   switches.manualSwitch = 1; Test_init(pinCount); SD.remove(fname4); saveState(); // Pinout after IC testing
         break;
-      case 21:  autoSearch(pinCount); switches.autosearchEnd = 1; autoSearchResult();//Searches the SD card for the right chip
+      case 21:
+      Serial.println("autosearch flow");
+        if (!switches.autosearchFail == 1) {
+          Serial.println("\tautosearch flow go search");
+          autoSearch(pinCount);
+          Serial.println("\tautosearch flow end");
+          switches.autosearchEnd = 1;
+          Serial.println("\tautosearch flow go result");
+          autoSearchResult();//Searches the SD card for the right chip
+          if (switches.autosearchFail == 1) {
+            Serial.println("\tautosearch flow fail, go menu");
+            screenStatus = 1;
+          }
+        } else {
+          Serial.println("\tautosearch flow fail");
+        }
         break;
       case 32:
+        Serial.println(F("Case 32"));
         numberRouting.reserve(6);
         numberRouting = getIC(0);
         if (switches.circumvent == 1) break;

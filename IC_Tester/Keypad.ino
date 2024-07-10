@@ -23,6 +23,8 @@ const char buttonlabels[10][5] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", 
 const char deleted[1] = { " "};
 String getIC(byte keypadText)
 {
+  Serial.print(F("[getIC] "));
+  Serial.println(keypadText);
   tft.fillScreen(NUPEDEE_AZUL_CLARO);
  
   String number = "";

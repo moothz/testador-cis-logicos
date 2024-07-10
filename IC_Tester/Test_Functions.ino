@@ -63,6 +63,7 @@ boolean identificationCase(const String& test, int pins)//newCase Pins
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 boolean loopTestCase(const String& test, int pins)//newCase Pins
 {
+  Serial.println(F("[loopTestCase]"));
   boolean result = true;
   int clkPin = -1;
   for (uint8_t i = 0; i < pins; i++)  

@@ -15,8 +15,9 @@ void Test_init(int pins)
   outputSize = 10;
   boxSize = 20;
   horizontalNudge = 0;
-
-  tft.fillScreen(NUPEDEE_AZUL_CLARO);
+  
+  tft.fillScreen(NUPEDEE_AZUL_FORTE);
+  /*
   tft.setCursor(10, 10);
   tft.setTextColor(NUPEDEE_CINZINHA);  tft.setTextSize(4);
   tft.println(F(" NUPEDEE "));
@@ -37,8 +38,7 @@ void Test_init(int pins)
   tft.setTextSize(2);
   tft.print(F("CI: "));
   tft.println(numberRouting);
-
-
+  */
 
   if (numberRouting.toInt() > 7399 && numberRouting.toInt() < 7500 || numberRouting.toInt() > 74000) {
     dataFile.seek(33700); // this line here speeds up the process of looking for the 7400 series,could cause problems if a IC of the cd4000 series is removed!!

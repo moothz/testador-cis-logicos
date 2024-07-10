@@ -177,6 +177,7 @@ struct boolSwitches
   bool lastconfig5Status        : 1;//config 5 toggle
   bool keypadIC = 0;            : 1;//Keypad last IC toggle
   bool autosearchEnd = 0;       : 1;
+  bool autosearchFail = 0;      : 1;
   bool switchCaseFininshed = 0; : 1;
   bool manualSwitch             : 1;//
   bool circumvent = 0;          : 1;//used to bypass the rest of the routine(usually the keypad function) and go to main menu
@@ -288,7 +289,7 @@ void setup()
   Serial.print("Inicializando SD card...");
   SD_init(); //SD Card Setup
 
-  Serial.print("Sistema Inicializado");
+  Serial.println("- Sistema Inicializado -\n");
 }
 //----------------------------------------------------------------------------------------------------------------------//
 // --------------------------------------------------Main Loop----------------------------------------------------------//

@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------------------------------------------------//
 void repeatTest(const String& number, int numberTest)
 {
+  Serial.println(F("[repeatTest]"));
   chip newChip;
   boolean result = true;
   boolean resultFix = true;//Needed to fix the transition from a failed to passed test
@@ -272,7 +273,7 @@ void repeatTest(const String& number, int numberTest)
     do {
       getTouch();
     } while (switches.status == 0);
-    screenStatus = 1;
+    screenStatus = 0;
     flow();
   }
 }
